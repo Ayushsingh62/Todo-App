@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 
 function Form({addTodo}) {
 
     const [todo , setTodo] = useState('')
+ useEffect(()=>{
+document.body.style.backgroundColor= "pink"
 
+
+ })
 
 const handleSubmit=(e)=>{
 
