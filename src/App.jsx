@@ -36,6 +36,15 @@ setTasks([...tasks, newTodo])
     setTasks(tasks.filter((task)=> task.id !==id))
 
   }
+
+
+  // const changemode=()=>{
+  //   document.body.style.backgroundColor= "black"
+  // }
+  
+
+
+  
   return (
     <>
     <div className="main-container">
@@ -43,6 +52,8 @@ setTasks([...tasks, newTodo])
 <Navabr/>
 
 <div className="container">
+{/* <button onClick={chnagemode}  >Change mode</button> */}
+
 <Form addTodo = {addTodo}/>
 {
 tasks.map((task)=>(
