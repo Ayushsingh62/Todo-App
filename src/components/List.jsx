@@ -1,17 +1,25 @@
 import React from 'react'
 
-function List({task , deleteTodo}) {
+function List({task , deleteTodo , editItem}) {
     // console.log(task)
     
   return (
-    
+    <div>
 <ul>
 
-<li> {task.id} {task.title} {task.iscompleted} 
-    <button onClick={()=> deleteTodo(task.id)}>Delete</button> </li>
+<li> 
+  
+  <p>{task.id} </p>
+  <h2>{task.title}  </h2> 
+  <h2> {task.iscompleted}  </h2>
 
-</ul>
+  <span>   
+     <button onClick={()=> deleteTodo(task.id)}>Delete</button> 
+    <button onClick={()=> editItem(task)}>Edit</button>
+
+</span> </li>
+</ul></div>
   )
 }
 
-export default List
+export default List 

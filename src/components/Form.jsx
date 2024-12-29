@@ -1,38 +1,53 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 
-function Form({addTodo}) {
+function Form({ addTodo, edit, updateItem }) {
+//  console.log(edit)
+  const [todo, setTodo] = useState()
 
-    const [todo , setTodo] = useState('')
- useEffect(()=>{
-document.body.style.backgroundColor= ""
+  useEffect(() => {
+    document.body.style.backgroundColor = ""
 
 
- })
+  }, [])
 
-const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
 
     e.preventDefault()
+    if (edit.isEdit === false ) {
+      addTodo(todo);
+      console.log("todo")
 
-addTodo(todo)
-console.log(todo)
-setTodo('')
+    }
+    else {
 
-}
+      updateItem(edit.task.id , todo);
+    
+    }
+
+
+    console.log(todo)
+    setTodo('')
+
+  }
+
+  useEffect(() => {
+    setTodo(edit.task.title)
+  }, [edit])
 
   return (
     <form action="" onSubmit={handleSubmit} >
 
-<input 
-value ={todo}
-onChange={(e) =>setTodo(e.target.value)}
-type="text" 
+      <input
+        value={todo}
+        onChange={(e) => setTodo(e.target.value)}
+        type="text"
 
-/>
+      />
 
-<button  >Add task</button>
+      <button  >Add task</button>
 
-</form>
+    </form>
   )
 }
 

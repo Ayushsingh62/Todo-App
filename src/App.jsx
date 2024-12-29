@@ -6,18 +6,15 @@ import List from './components/List'
 
 function App() {
  
-  const [tasks , setTasks]=useState([
-
-  ]
-
-
-  )
+  const [tasks , setTasks]=useState([])
+  const [edit, setEdit]=useState({ task: {}, isEdit:false })
 
 
   const addTodo = (todo) =>{
  
   let newTodo = {
-id : tasks.length +1 ,
+id : crypto.randomUUID(),
+//  tasks.length +1 ,
 title : todo,
 iscompleted :" False"
 
@@ -25,10 +22,6 @@ iscompleted :" False"
     }
   
 setTasks([...tasks, newTodo])
-
-
-
-
   }
 
   const deleteTodo = (id)=>{
@@ -36,8 +29,21 @@ setTasks([...tasks, newTodo])
     setTasks(tasks.filter((task)=> task.id !==id))
 
   }
+const editItem = (todo)=>{
+  setEdit({ task:todo, isEdit:true })
+console.log(edit,"true")
+
+}
+// update
+const updateItem =(oldId , newtitle)=>{
 
 
+setTasks(tasks.map((task)=>
+task.id=== oldId ? {id:oldId , title:newtitle} : task
+))
+setEdit({ task: {}, isEdit:false })
+
+}
   // const changemode=()=>{
   //   document.body.style.backgroundColor= "black"
   // }
@@ -54,10 +60,10 @@ setTasks([...tasks, newTodo])
 <div className="container">
 {/* <button onClick={chnagemode}  >Change mode</button> */}
 
-<Form addTodo = {addTodo}/>
+<Form addTodo = {addTodo} edit={edit} updateItem={updateItem} />
 {
 tasks.map((task)=>(
-<List task={task} deleteTodo={deleteTodo} />
+<List  key={task.id} task={task} deleteTodo={deleteTodo}  editItem={editItem}/>
 
 
 ))
